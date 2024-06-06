@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI計算</title>
+    <link href="/css/health.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <button class="back" id="back-btn">戻る</button>
+    <h1>運動カロリー計算</h1>
+    <button class="logout" id="logout">ログアウト</button>
+</div>
+
+
+<fieldset style="background:ghostwhite; padding:10px; text-align:center;">
+    <label>運動メニュー
+    <select id="selectTraining">
+        <option th:each="training : ${training}" th:text="${training.training}" th:value="${training.mets}"></option>
+    </select></label><br><br>
+    <label>体重:<input type="number" id="weight" th:value="${session.user.weight}">kg</label><br><br>
+    <label>運動時間:<input type="number" id="minute">分</label><br><br>
+
+    <input type="button" value="計算" onclick="clickBtn()" />
+    <p id="result"></p>
+</fieldset>
+<script>
+    'use strict'
+
+    document.getElementById('back-btn').addEventListener('click', () => {
+      location.href = './menu'
+    })
+
+    document.getElementById('logout').addEventListener('click', () => {
+          location.href = './logout'
+    })
+
+    function clickBtn() {
+        const mets = document.getElementById("selectTraining").value;
+        const weight = document.getElementById("weight").value;
+        const minute = document.getElementById("minute").value/60;
+        
+        const result=Math.floor((mets*weight*minute*1.05)*100)/100;
+
+        document.getElementById("result").textContent="あなたが消費したカロリーは"+result+"kcalです。";
+    }
+</script>
+</body>
+</html>

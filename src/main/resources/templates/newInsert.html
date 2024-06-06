@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新規登録</title>
+    <link href="/css/health.css" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <h1>健康管理システム</h1>
+    </div>
+
+    <div class="insert">
+        <form action="/insert" method="post" th:object="${insertForm}">
+            <fieldset style="display:inline-block;background:ghostwhite; padding:10px; border:none;">
+                <div>
+                    <label>ログインID:</label>
+                    <input type="text" name="loginId" placeholder="ID">
+                    <br>
+                    <div class="error" th:text="${IDError}"> </div>
+                </div>
+
+                <div>
+                    <label>パスワード:</label>
+                    <input type="password" id="password" name="password" placeholder="PASS">
+                    <br>
+                    <div class="error" th:text="${passError}"> </div>
+                </div>
+
+                <div>
+                    <label>お名前:</label>
+                    <input type="text" id="name" name="name" placeholder="例:佐藤">
+                    <br>
+                    <div class="error" th:text="${nameError}"> </div>
+                </div>
+
+                <div>
+                    <label>身長:</label>
+                    <input type="number" id="height" name="height" placeholder="cm">
+                    <br>
+                    <div class="error" th:text="${heightError}"> </div>
+                </div>
+
+                <div>
+                    <label>体重:</label>
+                    <input type="number" id="weight" name="weight" placeholder="kg">
+                    <br>
+                    <div class="error" th:text="${weightError}"> </div>
+                </div>
+                <div>
+                    <label>性別:</label>
+                    <input type="radio" name="gender" value=1 checked><label>:男</label>
+                    <input type="radio" name="gender" value=2 ><label>:女</label>
+                    <br>
+                </div>
+                <div class="insert">
+                    <button id="login-btn" type="submit">
+                        登録
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

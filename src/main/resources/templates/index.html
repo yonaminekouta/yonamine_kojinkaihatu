@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>ログイン</title>
+  <link href="/css/health.css" rel="stylesheet">
+</head>
+<body>
+  <div>
+    <h1>健康管理システム</h1>
+  </div>
+
+  <div class="login">
+    <img src="/css/images/top_logo.png" class="doctor">
+    <p class="error" th:text="${missError}"></p>
+
+    <form action="/index" method="post" th:object="${loginForm}">
+      <fieldset style="display:inline-block;background:ghostwhite; padding:10px; border:none;">
+        <div>
+          <label>ログインID:</label>
+          <input type="text" id="loginId" name="loginId" placeholder="ID" th:field="*{loginId}">
+          <br>
+          <div class="error" th:text="${IDError}"> </div>
+        </div>
+
+        <div>
+          <label>パスワード:</label>
+          <input type="password" id="password" name="pass" placeholder="PASS" th:field="*{password}">
+          <br>
+          <div class="error" th:text="${passError}"> </div>
+        </div>
+        <button id="login-btn" type="submit">
+          ログイン
+        </button>
+      </fieldset>
+    </form>
+    <form action="/newInsert">
+    <p>初めての方はこちら</p>
+    <button id="new-user-btn" type="submit">
+      新規登録
+    </button>
+    </form>
+  </div>
+</body>
+</html>

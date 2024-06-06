@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI計算</title>
+    <link href="/css/health.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <button class="back" id="back-btn">戻る</button>
+    <h1>メニュー画面</h1>
+    <button class="logout" id="logout">ログアウト</button>
+</div>
+
+
+<fieldset style="background:ghostwhite; padding:10px; text-align:center;">
+    <label>身長:<input type="number" id="height" th:value="${session.user.height}">cm</label><br>
+    <label>体重:<input type="number" id="weight" th:value="${session.user.weight}">kg</label><br><br>
+
+    <input type="button" value="計算" onclick="clickBtn()" />
+    <p>あなたのBMIは <span id="BMI" th:text="${BMI}"></span> です。</p>
+    <p><span id="judge" th:text="${judge}"></span> です。</p>
+</fieldset>
+<script>
+    'use strict'
+
+    document.getElementById('back-btn').addEventListener('click', () => {
+      location.href = './menu'
+    })
+
+    document.getElementById('logout').addEventListener('click', () => {
+          location.href = './logout'
+    })
+
+    function clickBtn() {
+        const height = document.getElementById("height").value/100;
+        const weight = document.getElementById("weight").value;
+        const BMI=Math.floor((weight/(height*height))*100)/100;
+        document.getElementById("BMI").textContent = BMI;
+        if(BMI<18.5){
+            document.getElementById("judge").textContent = "低体重";
+        }else if(BMI>=18.5 && BMI<25){
+            document.getElementById("judge").textContent = "普通体重";
+        }else if(BMI>=25 && BMI<30){
+            document.getElementById("judge").textContent = "肥満(1度)";
+        }else if(BMI>=30 && BMI<35){
+            document.getElementById("judge").textContent = "肥満(2度)";
+        }else if(BMI>=35 && BMI<40){
+            document.getElementById("judge").textContent = "肥満(3度)";
+        }else if(BMI>=40){
+            document.getElementById("judge").textContent = "肥満(4度)";
+        }
+    }
+</script>
+</body>
+</html>

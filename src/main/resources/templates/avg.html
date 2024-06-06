@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>年齢別平均身長体重</title>
+    <link href="/css/health.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <button class="back" id="back-btn">戻る</button>
+    <h1>年齢別平均身長体重一覧表</h1>
+    <button class="logout" id="logout">ログアウト</button>
+</div>
+
+
+<fieldset style="background:ghostwhite; padding:10px; text-align:center; display: flex; justify-content: space-around;">
+    <div>
+        <p>男性</p>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>年齢</th>
+                <th>身長(cm)</th>
+                <th>体重(kg)</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="man : ${man}">
+                    <td th:text="${man.age}"></td>
+                    <td th:text="${man.height}"></td>
+                    <td th:text="${man.weight}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p>女性</p>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>年齢</th>
+                <th>身長(cm)</th>
+                <th>体重(kg)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="woman : ${woman}">
+                <td th:text="${woman.age}"></td>
+                <td th:text="${woman.height}"></td>
+                <td th:text="${woman.weight}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+<script>
+    'use strict'
+
+    document.getElementById('back-btn').addEventListener('click', () => {
+      location.href = './menu'
+    })
+
+    document.getElementById('logout').addEventListener('click', () => {
+          location.href = './logout'
+    })
+</script>
+</body>
+</html>

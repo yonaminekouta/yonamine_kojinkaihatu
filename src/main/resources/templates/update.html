@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>身長体重変更</title>
+    <link href="/css/health.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <button class="back" id="back-btn">戻る</button>
+    <h1>メニュー画面</h1>
+    <button class="logout" id="logout">ログアウト</button>
+</div>
+
+<form action="/update" method="post" th:object="${dataForm}">
+    <fieldset style="background:ghostwhite; padding:10px; text-align:center;">
+        <label>身長:<input type="number" name="height" th:value="${old_height}">cm</label><br>
+        <div class="error" th:text="${heightError}"></div><br>
+        <label>体重:<input type="number" name="weight" th:value="${old_weight}">kg</label><br>
+        <div class="error" th:text="${weightError}"></div><br>
+        <button type="submit">変更</button>
+        <p th:text="${success}"></p>
+    </fieldset>
+</form>
+<script>
+    'use strict'
+
+    document.getElementById('back-btn').addEventListener('click', () => {
+      location.href = './menu'
+    })
+
+    document.getElementById('logout').addEventListener('click', () => {
+          location.href = './logout'
+    })
+</script>
+</body>
+</html>

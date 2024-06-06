@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー画面</title>
+    <link href="/css/health.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <button class="taikai" id="taikai">退会</button>
+        <h1>メニュー画面</h1>
+        <button class="logout" id="logout">ログアウト</button>
+    </div>
+
+    <fieldset style="background:ghostwhite; padding:10px; text-align:center;">
+        <p>ようこそ、<span th:text="${session.user.name}"></span>さん</p>
+        <a href="/BMI" class="menu-btn">BMI計算</a><br><br>
+        <a href="/avg" class="menu-btn">年齢別平均身長体重</a><br><br>
+        <a href="/kcal" class="menu-btn">運動カロリー計算</a><br><br>
+        <a href="/update" class="menu-btn">身長体重変更</a>
+    </fieldset>
+    <script>
+        'use strict'
+
+        document.getElementById('logout').addEventListener('click', () => {
+          location.href = './logout'
+        })
+
+        document.getElementById('taikai').addEventListener('click', () => {
+          location.href = './taikai'
+        })
+    </script>
+</body>
+</html>
