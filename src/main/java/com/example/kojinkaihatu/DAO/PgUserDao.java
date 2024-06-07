@@ -58,7 +58,7 @@ public class PgUserDao implements UserDao{
     @Override
     public List<avg_data> findAllWomanData(){
         return jdbcTemplate.query("SELECT *" +
-                        "FROM avg_man;",
+                        "FROM avg_woman;",
                 new DataClassRowMapper<>(avg_data.class));
     };
 
